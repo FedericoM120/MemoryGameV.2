@@ -5,5 +5,6 @@ public class App {
 
         GameLogic myGame = new GameLogic(gameBoard);
         myGame.start();
+        myGame.playGame();
     }
 }

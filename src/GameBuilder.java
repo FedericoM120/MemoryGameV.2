@@ -18,6 +18,16 @@ public class GameBuilder {
             System.out.print(actualChoices[i] + "| ");
         }
     }
+
+    public char getIndexValue(int index) {
+        int i;
+        for (i = 0; i < actualChoices.length; i++) {
+            if (i == index) {
+                break;
+            }
+        }
+        return actualChoices[i];
+    }
     public int chooseIndex() {
         boolean availableIndexFound = false;
         int randomIndex = generateRandomNumberForMatchingCharacter();
