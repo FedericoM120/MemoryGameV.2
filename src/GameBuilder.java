@@ -45,10 +45,5 @@ public class GameBuilder {
             }
         }
         return randomChar;
-
-        /*Random r = new Random();
-        boolean letterNotUsed = false;
-        char memoryGameValue = (char)(r.nextInt(26) + 'A');
-        return memoryGameValue;*/
     }
 }

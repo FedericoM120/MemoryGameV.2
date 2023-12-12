@@ -1,7 +1,9 @@
 public class App {
     public static void main(String[] args) {
-        GameBuilder game = new GameBuilder();
-        game.makeGame();
-        game.printGame();
+        GameBuilder gameBoard = new GameBuilder();
+        gameBoard.makeGame();
+
+        GameLogic myGame = new GameLogic(gameBoard);
+        myGame.start();
     }
 }
