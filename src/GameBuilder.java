@@ -8,7 +8,7 @@ public class GameBuilder {
     }
 
     public void makeGame() {
-        for (int i = 0; i < 8; i++){
+        for (int i = 0; i < 4; i++){
             char matchingCharacter = createRandomCharacter();
             actualChoices[chooseIndex()] = matchingCharacter;
             actualChoices[chooseIndex()] = matchingCharacter;
@@ -16,19 +16,21 @@ public class GameBuilder {
     }
     public void printGame(){
         for (int i = 0; i < actualChoices.length; i++) {
-            System.out.println(actualChoices[i]);
+            System.out.print(actualChoices[i] + "| ");
         }
     }
 
     public int chooseIndex() {
-        for (int i = 0; i < checkIfIndexTaken.length; i++) {
-            if (checkIfIndexTaken[generateRandomNumberForMatchingCharacter()] == 10){
-                return generateRandomNumberForMatchingCharacter();
-            } else {
-                continue;
+        boolean availableIndexFound = false;
+        int randomIndex = generateRandomNumberForMatchingCharacter();
+        while (availableIndexFound == false){
+            randomIndex = generateRandomNumberForMatchingCharacter();
+            if (this.checkIfIndexTaken[randomIndex] == 10){
+                checkIfIndexTaken[randomIndex] = randomIndex;
+                availableIndexFound = true;
             }
         }
-        return -1;
+        return randomIndex;
     }
 
     public void chooseIndexTwo() {
