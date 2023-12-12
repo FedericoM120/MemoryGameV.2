@@ -6,7 +6,6 @@ public class GameBuilder {
         this.checkIfIndexTaken = new int[]{10,10,10,10,10,10,10,10};
         this.actualChoices = new char[]{'!', '!','!', '!','!', '!','!', '!'};
     }
-
     public void makeGame() {
         for (int i = 0; i < 4; i++){
             char matchingCharacter = createRandomCharacter();
@@ -19,7 +18,6 @@ public class GameBuilder {
             System.out.print(actualChoices[i] + "| ");
         }
     }
-
     public int chooseIndex() {
         boolean availableIndexFound = false;
         int randomIndex = generateRandomNumberForMatchingCharacter();
@@ -32,21 +30,25 @@ public class GameBuilder {
         }
         return randomIndex;
     }
-
-    public void chooseIndexTwo() {
-
-    }
-
     public int generateRandomNumberForMatchingCharacter(){
         Random r = new Random();
         int randomValue = r.nextInt(8);
         return randomValue;
     }
-
     public char createRandomCharacter() {
         Random r = new Random();
-        char memoryGameValue = (char)(r.nextInt(26) + 'A');
-        return memoryGameValue;
-    }
+        char randomChar = (char)(r.nextInt(26) + 'A');
+        for (int i = 0; i < actualChoices.length; i++){
+            if (randomChar == actualChoices[i]) {
+                randomChar = (char)(r.nextInt(26) + 'A');
+                i = 0;
+            }
+        }
+        return randomChar;
 
+        /*Random r = new Random();
+        boolean letterNotUsed = false;
+        char memoryGameValue = (char)(r.nextInt(26) + 'A');
+        return memoryGameValue;*/
+    }
 }
