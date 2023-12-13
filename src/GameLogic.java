@@ -11,7 +11,6 @@ public class GameLogic {
     public void start() {
         game.printGame();
     }
-
     public void playGame(){
         //String[] appearance = new String[]{"null", "null", "null", "null", "null", "null", "null", "null"};
         int i = 0;
@@ -29,12 +28,12 @@ public class GameLogic {
             System.out.println("Enter second index:");
             int secondIndex = scanner.nextInt();
             int validSecondIndex = validIndexChosen(secondIndex);
-            System.out.println(validSecondIndex + "=" + game.getIndexValue(validSecondIndex));
+            int validSecondIndexNotRepeatingFirstIndex = checkIfIndexesAreDifferent(validFirstIndex, validSecondIndex);
+            System.out.println(validSecondIndexNotRepeatingFirstIndex + "=" + game.getIndexValue(validSecondIndexNotRepeatingFirstIndex));
 
-            updateStateOfGame(validFirstIndex, validSecondIndex);
-            i++;
+            updateStateOfGame(validFirstIndex, validSecondIndexNotRepeatingFirstIndex);
+            i = playAgain(i);
         }
-
     }
     public int validIndexChosen(int indexSelected) {
         boolean validIndexSelection = false;
@@ -52,7 +51,13 @@ public class GameLogic {
         }
         return indexSelected;
     }
-
+    public int checkIfIndexesAreDifferent(int differentFirstIndex, int differentSecondIndex) {
+        while (differentFirstIndex == differentSecondIndex) {
+            System.out.println("Can't choose the same index for both choices. Choose a new second index:");
+            differentSecondIndex = scanner.nextInt();
+        }
+        return differentSecondIndex;
+    }
     public void updateStateOfGame(int firstIndex, int secondIndex) {
         if (game.getIndexValue(firstIndex) == game.getIndexValue(secondIndex)) {
             appearance[firstIndex] = String.valueOf(game.getIndexValue(firstIndex));
@@ -61,6 +66,28 @@ public class GameLogic {
             appearance[firstIndex] = " ";
             appearance[secondIndex] = " ";
         }
+    }
+
+    public int playAgain(int currentValueOfI){
+        int nullOrBlankCounter = 0;
+        for (int i = 0; i < appearance.length; i++) {
+            if (appearance[i] == "null" || appearance[i] == " ") {
+                nullOrBlankCounter++;
+            }
+        }
+
+        if (nullOrBlankCounter == 0) {
+            System.out.println("You won! Game over. \nPlay again? Enter y for yes or n for no");
+            String playAgain = scanner.next();
+            if (playAgain.equals("y")) {
+                game.makeGame();
+                playGame();
+            } else {
+                currentValueOfI = 200;
+                System.out.println("bye!");
+            }
+        }
+        return currentValueOfI;
     }
 
 
