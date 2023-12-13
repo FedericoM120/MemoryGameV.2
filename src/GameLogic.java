@@ -80,8 +80,14 @@ public class GameLogic {
             System.out.println("You won! Game over. \nPlay again? Enter y for yes or n for no");
             String playAgain = scanner.next();
             if (playAgain.equals("y")) {
-                game.makeGame();
-                playGame();
+                GameBuilder gameBoard = new GameBuilder();
+                gameBoard.makeGame();
+
+                GameLogic myGame = new GameLogic(gameBoard);
+                myGame.start();
+                System.out.println(" ");
+
+                myGame.playGame();
             } else {
                 currentValueOfI = 200;
                 System.out.println("bye!");
