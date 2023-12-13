@@ -8,6 +8,9 @@ public class GameLogic {
         this.scanner = new Scanner(System.in);
         this.appearance = new String[]{"null", "null", "null", "null", "null", "null", "null", "null"};
     }
+    public void start() {
+        game.printGame();
+    }
     public void playGame(){
         //String[] appearance = new String[]{"null", "null", "null", "null", "null", "null", "null", "null"};
         int willAlwaysBeZeroUnlessUserChoosesToEndGame = 0;
@@ -22,16 +25,59 @@ public class GameLogic {
             int validFirstIndex = validIndexChosen(firstIndex);
             System.out.println(validFirstIndex + "=" +  game.getIndexValue(validFirstIndex));
 
+            for (int j = 0; j < appearance.length; j++) {
+                if (j == validFirstIndex) {
+                    System.out.print(game.getIndexValue(validFirstIndex) + "| ");
+                } else {
+                    System.out.print(appearance[j] + "| ");
+                }
+            }
+            //print statement for space
             System.out.println("Enter second index:");
             int secondIndex = scanner.nextInt();
-            int validSecondIndex = validIndexChosen(secondIndex);
-            int validSecondIndexNotRepeatingFirstIndex = checkIfIndexesAreDifferent(validFirstIndex, validSecondIndex);
+            int validSecondIndexNotRepeatingFirstIndex = checkIfBothValidAndNotDupe(firstIndex, secondIndex);
+
+            //int validSecondIndex = validIndexChosen(secondIndex);
+            //int validSecondIndexNotRepeatingFirstIndex = checkIfIndexesAreDifferent(validFirstIndex, validSecondIndex);
+
+
+
             System.out.println(validSecondIndexNotRepeatingFirstIndex + "=" + game.getIndexValue(validSecondIndexNotRepeatingFirstIndex));
 
             updateStateOfGame(validFirstIndex, validSecondIndexNotRepeatingFirstIndex);
-            i = playAgain(i);
+            willAlwaysBeZeroUnlessUserChoosesToEndGame = playAgain(willAlwaysBeZeroUnlessUserChoosesToEndGame);
         }
     }
+
+    public int checkIfBothValidAndNotDupe(int indexOne, int indexTwo) {
+        boolean dupe = true;
+        boolean avail = true;
+
+        int firstIndex = 0;
+        while (dupe && avail) {
+            if (appearance[indexTwo] != "null" && appearance[indexTwo] != " ") {
+                System.out.println("This index has already been found. Please choose another index:");
+                firstIndex = scanner.nextInt();
+                indexTwo = firstIndex;
+                avail = true;
+                continue;
+            } else if (appearance[indexTwo] == "null" && appearance[indexTwo] == " ") {
+                avail = false;
+            }
+            if (indexOne == indexTwo) {
+                System.out.println("Can't choose the same index for both choices. Choose a new second index:");
+                indexTwo = scanner.nextInt();
+                dupe = true;
+
+            } else {
+                dupe = false;
+            }
+        }
+        return indexTwo;
+    }
+
+
+
     public int validIndexChosen(int indexSelected) {
         boolean validIndexSelection = false;
         int firstIndex = 0;
@@ -48,13 +94,14 @@ public class GameLogic {
         }
         return indexSelected;
     }
-    public int checkIfIndexesAreDifferent(int differentFirstIndex, int differentSecondIndex) {
-        while (differentFirstIndex == differentSecondIndex) {
+    public int checkIfIndexesAreDifferent(int firstIndex, int secondIndex) {
+        while (firstIndex == secondIndex) {
             System.out.println("Can't choose the same index for both choices. Choose a new second index:");
-            differentSecondIndex = scanner.nextInt();
+            secondIndex = scanner.nextInt();
         }
-        return differentSecondIndex;
+        return secondIndex;
     }
+
     public void updateStateOfGame(int firstIndex, int secondIndex) {
         if (game.getIndexValue(firstIndex) == game.getIndexValue(secondIndex)) {
             appearance[firstIndex] = String.valueOf(game.getIndexValue(firstIndex));
