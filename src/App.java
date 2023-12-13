@@ -4,10 +4,6 @@ public class App {
         gameBoard.makeGame();
 
         GameLogic myGame = new GameLogic(gameBoard);
-
-        myGame.start();
-        System.out.println(" ");
-
         myGame.playGame();
     }
 }

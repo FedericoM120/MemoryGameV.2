@@ -84,7 +84,6 @@ public class GameLogic {
                 gameBoard.makeGame();
 
                 GameLogic myGame = new GameLogic(gameBoard);
-                myGame.start();
                 System.out.println(" ");
 
                 myGame.playGame();
@@ -95,8 +94,4 @@ public class GameLogic {
         }
         return currentValueOfI;
     }
-
-
-
-
 }
