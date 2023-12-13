@@ -10,8 +10,8 @@ public class GameLogic {
     }
     public void playGame(){
         //String[] appearance = new String[]{"null", "null", "null", "null", "null", "null", "null", "null"};
-        int i = 0;
-        while (i < 9){
+        int willAlwaysBeZeroUnlessUserChoosesToEndGame = 0;
+        while (willAlwaysBeZeroUnlessUserChoosesToEndGame < 9){
             for (int j = 0; j < appearance.length; j++) {
                 System.out.print(appearance[j] + "| ");
             }
