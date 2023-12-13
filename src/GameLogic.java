@@ -32,16 +32,9 @@ public class GameLogic {
                     System.out.print(appearance[j] + "| ");
                 }
             }
-            //
-            //print statement for space
             System.out.println("Enter second index:");
             int secondIndex = scanner.nextInt();
             int validSecondIndexNotRepeatingFirstIndex = checkIfBothValidAndNotDupe(firstIndex, secondIndex);
-
-            //int validSecondIndex = validIndexChosen(secondIndex);
-            //int validSecondIndexNotRepeatingFirstIndex = checkIfIndexesAreDifferent(validFirstIndex, validSecondIndex);
-
-
 
             System.out.println(validSecondIndexNotRepeatingFirstIndex + "=" + game.getIndexValue(validSecondIndexNotRepeatingFirstIndex));
 
