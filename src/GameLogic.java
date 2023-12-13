@@ -69,6 +69,7 @@ public class GameLogic {
                 System.out.println("Can't choose the same index for both choices. Choose a new second index:");
                 indexTwo = scanner.nextInt();
                 dupe = true;
+                continue;
 
             } else {
                 dupe = false;
