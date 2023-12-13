@@ -8,9 +8,6 @@ public class GameLogic {
         this.scanner = new Scanner(System.in);
         this.appearance = new String[]{"null", "null", "null", "null", "null", "null", "null", "null"};
     }
-    public void start() {
-        game.printGame();
-    }
     public void playGame(){
         //String[] appearance = new String[]{"null", "null", "null", "null", "null", "null", "null", "null"};
         int i = 0;
