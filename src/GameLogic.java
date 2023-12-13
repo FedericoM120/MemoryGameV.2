@@ -32,6 +32,7 @@ public class GameLogic {
                     System.out.print(appearance[j] + "| ");
                 }
             }
+            //
             //print statement for space
             System.out.println("Enter second index:");
             int secondIndex = scanner.nextInt();
