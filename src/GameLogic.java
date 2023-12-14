@@ -32,9 +32,9 @@ public class GameLogic {
                     System.out.print(appearance[j] + "| ");
                 }
             }
-            System.out.println("Enter second index:");
+            System.out.println("\nEnter second index:");
             int secondIndex = scanner.nextInt();
-            int validSecondIndexNotRepeatingFirstIndex = checkIfBothValidAndNotDupe(firstIndex, secondIndex);
+            int validSecondIndexNotRepeatingFirstIndex = checkIfBothValidAndNotDupe(validFirstIndex, secondIndex);
 
             System.out.println(validSecondIndexNotRepeatingFirstIndex + "=" + game.getIndexValue(validSecondIndexNotRepeatingFirstIndex));
 
@@ -70,8 +70,6 @@ public class GameLogic {
         }
         return indexTwo;
     }
-
-
 
     public int validIndexChosen(int indexSelected) {
         boolean validIndexSelection = false;
@@ -126,6 +124,7 @@ public class GameLogic {
                 System.out.println(" ");
 
                 myGame.playGame();
+                currentValueOfI = 200;
             } else {
                 currentValueOfI = 200;
                 System.out.println("bye!");
