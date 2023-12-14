@@ -9,7 +9,7 @@ public class GameBuilder {
         //this array uses the arbitrary char value '!' which will be replaced by a letter during the construction of the board
         this.actualChoices = new char[]{'!', '!','!', '!','!', '!','!', '!'};
     }
-    //
+    //makes the game
     public void makeGame() {
         //there are 4 pairs of matching letters so only 4 loops necessary
         for (int i = 0; i < 4; i++){
