@@ -54,6 +54,8 @@ public class GameLogic {
         int firstIndex = 0;
         //will continue to loop until the user inputs a non-duplicate value and an available index
         while (dupe && notAvail) {
+            //checks if the index chosen is in scope
+            indexTwo = checkIfInScope(indexTwo);
             //checks if the index chosen is a letter by checking to see if the space is either nor a string "null" or a blank space " " confirming that index is not available bc it has a letter assigned to it already
             if (appearance[indexTwo] != "null" && appearance[indexTwo] != " ") {
                 System.out.println("This index has already been found. Please choose another index:");
@@ -75,12 +77,28 @@ public class GameLogic {
         }
         return indexTwo;
     }
+    //checks if the index chosen is in scope
+    public int checkIfInScope(int indexPassed) {
+        boolean indexInScope = false;
+        while (indexInScope == false) {
+            if (indexPassed < 0 || indexPassed > 7) {
+                System.out.println("Please choose an index between 0 and 7");
+                int inScopeIndex = scanner.nextInt();
+                indexPassed = inScopeIndex;
+            } else {
+                indexInScope = true;
+            }
+        }
+        return indexPassed;
+    }
     //validIndexChosen checks if the first index chosen by user doesn't have a letter assigned to the index
     public int validIndexChosen(int indexSelected) {
+        //checks if the index chosen is in scope
         boolean validIndexSelection = false;
         //needed to declare firstIndex outside of while loop due to scope
         int firstIndex = 0;
         while (validIndexSelection != true) {
+            indexSelected = checkIfInScope(indexSelected);
             if (appearance[indexSelected] != "null" && appearance[indexSelected] != " ") {
                 System.out.println("This index has already been found. Please choose another index:");
                 firstIndex = scanner.nextInt();
