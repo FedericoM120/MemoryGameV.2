@@ -1,4 +1,5 @@
 import java.util.Scanner;
+//Handles the logic for game play
 public class GameLogic {
     private GameBuilder game;
     private Scanner scanner;
